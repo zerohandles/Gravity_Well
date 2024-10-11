@@ -9,9 +9,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform _blackHole;
     [SerializeField] float _pullStrength;
 
-    [Header("Player Stats")]
+    [Header("Player")]
     [SerializeField] float _thrusterSpeed;
     [SerializeField] float _rotationSpeed;
+    [SerializeField] GameObject _thrusters;
 
     PlayerInput _input;
     Rigidbody2D _rb;
@@ -32,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _moveInput = _moveAction.ReadValue<Vector2>();
         _isMoving = _moveInput != Vector2.zero;
+        _thrusters.SetActive(_isMoving);
 
         HandleMovement();
         transform.up = (transform.position - _blackHole.position).normalized;
@@ -52,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
             if (_moveInput.x != 0)
             {
                 _escapeSpeed *= .66f;
-                transform.RotateAround(_blackHole.position, Vector3.forward, _moveInput.x * _rotationSpeed * Time.deltaTime);
+                transform.RotateAround(_blackHole.position, Vector3.forward, -_moveInput.x * _rotationSpeed * Time.deltaTime);
             }
         }
         else

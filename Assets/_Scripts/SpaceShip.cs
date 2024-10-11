@@ -9,13 +9,19 @@ public class SpaceShip : MonoBehaviour
     [SerializeField] float _minScale;
     [SerializeField] float _maxScale;
     [SerializeField] GameObject _upgradePrefab;
-    float _health;
+    [SerializeField] GameObject _blackHole;
+    [SerializeField] List<Sprite> _sprites;
 
+    SpriteRenderer _spriteRenderer;
+    float _health;
     float _mass;
     float _scale;
 
     void Awake()
     {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer.sprite = _sprites[Random.Range(0, _sprites.Count)];
+
         _scale = Random.Range(_minScale, _maxScale);
         _mass = Random.Range(_minMass, _maxMass);
         _health = Mathf.Ceil(2 * _scale);
@@ -23,6 +29,7 @@ public class SpaceShip : MonoBehaviour
         var localScale = transform.localScale;
         localScale.x *= _scale;
         localScale.y *= _scale;
+        localScale.z *= _scale;
         transform.localScale = localScale;
         GetComponent<Rigidbody2D>().mass = _mass;
     }
@@ -34,6 +41,7 @@ public class SpaceShip : MonoBehaviour
             SpawnLoot();
             Death();
         }
+        transform.up = transform. position - _blackHole.transform.position;
     }
 
     private void SpawnLoot()
