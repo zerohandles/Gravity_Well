@@ -17,10 +17,12 @@ public class Comet : MonoBehaviour
     float _rotationDirection;
     float _scale;
     SpriteRenderer _spriteRenderer;
+    Collider2D _collider;
     
 
     void Awake()
     {
+        _collider = GetComponent<Collider2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _spriteRenderer.sprite = _sprites[Random.Range(0, _sprites.Count)];
         _rotationSpeed = Random.Range(_minRotationSpeed, _maxRotationSpeed);
@@ -36,7 +38,6 @@ public class Comet : MonoBehaviour
         GetComponent<Rigidbody2D>().mass = _mass;
     }
 
-
     void Update()
     {
         RotateComet();
@@ -45,5 +46,14 @@ public class Comet : MonoBehaviour
     void RotateComet()
     {
         transform.Rotate(0, 0, 1 * _rotationSpeed * _rotationDirection);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("Blackhole"))
+        {
+            _collider.isTrigger = true;
+            Destroy(gameObject, 3);
+        }
     }
 }
