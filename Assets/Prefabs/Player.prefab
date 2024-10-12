@@ -44,9 +44,11 @@ GameObject:
   - component: {fileID: 7012067874400361663}
   - component: {fileID: 437554651957568269}
   - component: {fileID: 2228125955152653368}
+  - component: {fileID: 8821797044871258402}
   - component: {fileID: 3062199516780504971}
   - component: {fileID: 2419917211046358134}
   - component: {fileID: 7728318383766089834}
+  - component: {fileID: 167370798744574378}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -68,7 +70,7 @@ Transform:
   m_Children:
   - {fileID: 3385952857965139398}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &437554651957568269
 SpriteRenderer:
@@ -134,10 +136,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5857d420ef84065418cffdba479f466a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _blackHole: {fileID: 0}
+  _blackhole: {fileID: 0}
   _pullStrength: 5
   _thrusterSpeed: 10
   _rotationSpeed: 50
+  _thrusters: {fileID: 3555695119652964532}
+--- !u!114 &8821797044871258402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4416885522301457030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ab46bb9f2710b8479bd3193554edc19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 20
+  _blackhole: {fileID: 0}
 --- !u!58 &3062199516780504971
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -230,6 +247,20 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &167370798744574378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4416885522301457030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ab46bb9f2710b8479bd3193554edc19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 0
+  _blackhole: {fileID: 0}
 --- !u!1 &4503053290030249096
 GameObject:
   m_ObjectHideFlags: 0

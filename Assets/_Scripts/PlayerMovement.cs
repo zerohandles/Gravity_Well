@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Blackhole")]
-    [SerializeField] Transform _blackHole;
+    [SerializeField] Transform _blackhole;
     [SerializeField] float _pullStrength;
 
     [Header("Player")]
@@ -36,12 +36,12 @@ public class PlayerMovement : MonoBehaviour
         _thrusters.SetActive(_isMoving);
 
         HandleMovement();
-        transform.up = (transform.position - _blackHole.position).normalized;
+        transform.up = (transform.position - _blackhole.position).normalized;
     }
 
     private void FixedUpdate()
     {
-        _direction = (transform.position - _blackHole.position).normalized;
+        _direction = (transform.position - _blackhole.position).normalized;
         _rb.AddForce(_direction * (_escapeSpeed - _pullStrength));
     }
 
@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
             if (_moveInput.x != 0)
             {
                 _escapeSpeed *= .66f;
-                transform.RotateAround(_blackHole.position, Vector3.forward, -_moveInput.x * _rotationSpeed * Time.deltaTime);
+                transform.RotateAround(_blackhole.position, Vector3.forward, -_moveInput.x * _rotationSpeed * Time.deltaTime);
             }
         }
         else

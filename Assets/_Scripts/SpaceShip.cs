@@ -11,7 +11,7 @@ public class SpaceShip : MonoBehaviour
     [SerializeField] GameObject _upgradePrefab;
     [SerializeField] List<Sprite> _sprites;
 
-    GameObject _blackHole;
+    GameObject _blackhole;
     SpriteRenderer _spriteRenderer;
     float _health;
     float _mass;
@@ -21,7 +21,7 @@ public class SpaceShip : MonoBehaviour
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _spriteRenderer.sprite = _sprites[Random.Range(0, _sprites.Count)];
-        _blackHole = GameObject.Find("Blackhole");
+        _blackhole = GameObject.Find("Blackhole");
 
         _scale = Random.Range(_minScale, _maxScale);
         _mass = Random.Range(_minMass, _maxMass);
@@ -42,7 +42,7 @@ public class SpaceShip : MonoBehaviour
             SpawnLoot();
             Death();
         }
-        transform.up = transform. position - _blackHole.transform.position;
+        transform.up = transform. position - _blackhole.transform.position;
     }
 
     private void SpawnLoot()
