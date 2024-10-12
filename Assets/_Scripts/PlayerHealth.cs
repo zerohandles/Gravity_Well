@@ -12,6 +12,7 @@ public class PlayerHealth : MonoBehaviour
     float _minDistance = 1.1f;
 
     public event Action OnHealthChange;
+    public event Action TriggerDeath;
 
     void Awake() => Health = _maxHealth;
 
@@ -24,6 +25,7 @@ public class PlayerHealth : MonoBehaviour
     void Death()
     {
         Debug.Log("Game Over");
+        TriggerDeath?.Invoke();
     }
 
     public void TakeDamage(float amount)

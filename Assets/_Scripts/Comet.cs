@@ -69,7 +69,7 @@ public class Comet : MonoBehaviour
             Vector3 offset = new Vector3(Random.Range(0,.5f), Random.Range(0,.5f), 0);
             Instantiate(_fuelPrefab, transform.position + offset, Quaternion.identity);
         }
-
+        GameManager.Instance.CometKilled();
         Death();
     }
 

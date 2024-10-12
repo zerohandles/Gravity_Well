@@ -37,11 +37,6 @@ public class SpaceShip : MonoBehaviour
 
     void Update()
     {
-        if (_health <= 0)
-        {
-            SpawnLoot();
-            Death();
-        }
         transform.up = transform. position - _blackhole.transform.position;
 
         if (Vector2.Distance(transform.position, Vector2.zero) < 0.1f)
@@ -70,7 +65,7 @@ public class SpaceShip : MonoBehaviour
             offset = new Vector3(Random.Range(0, .5f), Random.Range(0, 0.5f), 0);
             Instantiate(loot, transform.position + offset, Quaternion.identity);
         }
-
+        GameManager.Instance.ShipKilled();
         Death();
     }
 

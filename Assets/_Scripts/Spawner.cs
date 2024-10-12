@@ -22,6 +22,11 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        InvokeRepeating(nameof(IncreaseSpawnRate), 60, 60);
+    }
+
     void Update()
     {
         _spawnTimer += Time.deltaTime;
@@ -47,5 +52,10 @@ public class Spawner : MonoBehaviour
         }
         isSpawning = false;
         _spawnTimer = 0;
+    }
+
+    void IncreaseSpawnRate()
+    {
+        _maxSpawns++;
     }
 }
