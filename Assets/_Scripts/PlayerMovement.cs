@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float _thrusterSpeed;
     [SerializeField] float _rotationSpeed;
     [SerializeField] GameObject _thrusters;
+    [SerializeField] float _maxFuel;
 
     [Header("Shooting")]
     [SerializeField] GameObject _firePoint;
@@ -32,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
 
     InputAction _moveAction;
     InputAction _fireAction;
+    public float Fuel { get; private set; }
+    public event Action OnFuelChange;
 
     void Awake()
     {
@@ -39,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _moveAction = _input.actions.FindAction("Move");
         _fireAction = _input.actions.FindAction("Fire");
+        Fuel = _maxFuel;
     }
 
     void Update()
@@ -87,5 +91,16 @@ public class PlayerMovement : MonoBehaviour
     {
         _cooldownTimer = 0;
         Instantiate(_bulletPrefab, _firePoint.transform.position, transform.rotation);
+    }
+
+    public void UpgradeEngine()
+    {
+        _thrusterSpeed *= 1.1f;
+    }
+
+    public void AddFuel(float amount)
+    {
+        Fuel += amount;
+        Fuel = Mathf.Clamp(Fuel, 0, 100);
     }
 }

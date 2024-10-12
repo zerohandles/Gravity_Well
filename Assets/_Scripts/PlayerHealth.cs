@@ -13,10 +13,7 @@ public class PlayerHealth : MonoBehaviour
 
     public event Action OnHealthChange;
 
-    void Awake()
-    {
-        Health = _maxHealth;    
-    }
+    void Awake() => Health = _maxHealth;
 
     void Update()
     {
@@ -36,5 +33,12 @@ public class PlayerHealth : MonoBehaviour
 
         if (Health <= 0)
             Death();
+    }
+
+    public void GainHealth(float amount)
+    {
+        Health += amount;
+        Health = Mathf.Clamp(Health, 0, _maxHealth);
+        OnHealthChange?.Invoke();
     }
 }

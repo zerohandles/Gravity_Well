@@ -172,6 +172,7 @@ MonoBehaviour:
   _thrusterSpeed: 10
   _rotationSpeed: 50
   _thrusters: {fileID: 3555695119652964532}
+  _maxFuel: 100
   _firePoint: {fileID: 821891097463754516}
   _bulletPrefab: {fileID: 5394920346930244351, guid: 6133859882df4f84b84c20361879cc6e, type: 3}
   _weaponCooldown: 0.5
