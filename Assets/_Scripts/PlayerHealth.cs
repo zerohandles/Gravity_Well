@@ -29,7 +29,7 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Game Over");
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         Health -= amount;
         OnHealthChange?.Invoke();

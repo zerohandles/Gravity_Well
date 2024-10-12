@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &821891097463754516
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3465458288845519532}
+  m_Layer: 6
+  m_Name: Fire Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3465458288845519532
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821891097463754516}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.01, y: 0.36, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7012067874400361663}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3555695119652964532
 GameObject:
   m_ObjectHideFlags: 0
@@ -48,7 +79,6 @@ GameObject:
   - component: {fileID: 3062199516780504971}
   - component: {fileID: 2419917211046358134}
   - component: {fileID: 7728318383766089834}
-  - component: {fileID: 167370798744574378}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -69,6 +99,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3385952857965139398}
+  - {fileID: 3465458288845519532}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -141,6 +172,9 @@ MonoBehaviour:
   _thrusterSpeed: 10
   _rotationSpeed: 50
   _thrusters: {fileID: 3555695119652964532}
+  _firePoint: {fileID: 821891097463754516}
+  _bulletPrefab: {fileID: 5394920346930244351, guid: 6133859882df4f84b84c20361879cc6e, type: 3}
+  _weaponCooldown: 0.5
 --- !u!114 &8821797044871258402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,20 +281,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &167370798744574378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4416885522301457030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ab46bb9f2710b8479bd3193554edc19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHealth: 0
-  _blackhole: {fileID: 0}
 --- !u!1 &4503053290030249096
 GameObject:
   m_ObjectHideFlags: 0
