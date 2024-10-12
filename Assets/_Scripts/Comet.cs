@@ -19,11 +19,9 @@ public class Comet : MonoBehaviour
     float _rotationDirection;
     float _scale;
     SpriteRenderer _spriteRenderer;
-    Collider2D _collider;
 
     void Awake()
     {
-        _collider = GetComponent<Collider2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _spriteRenderer.sprite = _sprites[Random.Range(0, _sprites.Count)];
         _rotationSpeed = Random.Range(_minRotationSpeed, _maxRotationSpeed);
@@ -59,7 +57,19 @@ public class Comet : MonoBehaviour
 
     private void SpawnLoot()
     {
-        // drop fuel
+        float amount = _scale switch
+        {
+            >= 1.5f => 3,
+            >= 1 => 2,
+            _ => 1
+        };
+
+        for (int  i = 0; i < amount; i++)
+        {
+            Vector3 offset = new Vector3(Random.Range(0,.5f), Random.Range(0,.5f), 0);
+            Instantiate(_fuelPrefab, transform.position + offset, Quaternion.identity);
+        }
+
         Death();
     }
 
@@ -75,8 +85,7 @@ public class Comet : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            var _player = collision.GetComponent<PlayerHealth>();
-            if (_player != null)
+            if (collision.TryGetComponent<PlayerHealth>(out var _player))
                 _player.TakeDamage(_health);
 
             Death();

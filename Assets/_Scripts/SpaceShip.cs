@@ -60,12 +60,15 @@ public class SpaceShip : MonoBehaviour
     {
         bool isBig = _scale >= 1.3f;
         var loot = GenerateLoot();
-        Instantiate(loot, transform.position, Quaternion.identity);
+        Vector3 offset = new Vector3(Random.Range(0, 0.5f), Random.Range(0, 0.5f), 0);
+
+        Instantiate(loot, transform.position + offset, Quaternion.identity);
 
         if (isBig)
         {
             loot = GenerateLoot();
-            Instantiate(loot, transform.position, Quaternion.identity);
+            offset = new Vector3(Random.Range(0, .5f), Random.Range(0, 0.5f), 0);
+            Instantiate(loot, transform.position + offset, Quaternion.identity);
         }
 
         Death();
@@ -73,7 +76,7 @@ public class SpaceShip : MonoBehaviour
 
     GameObject GenerateLoot()
     {
-        int rand = (int)Mathf.Round(Random.Range(0, _upgradePrefabs.Length));
+        int rand = Random.Range(0, _upgradePrefabs.Length);
 
         return _upgradePrefabs[rand];
     }

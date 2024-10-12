@@ -6,8 +6,7 @@ public class FuelUpgrade : PowerUp
 
     public override void UsePowerUp(GameObject gameObject)
     {
-        var player = gameObject.GetComponent<PlayerMovement>();
-        if (player != null)
+        if (gameObject.TryGetComponent<PlayerMovement>(out var player))
         {
             player.AddFuel(_fuelAmount);
             Destroy(this.gameObject);
