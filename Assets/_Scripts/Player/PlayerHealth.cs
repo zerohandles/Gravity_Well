@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
@@ -15,7 +14,7 @@ public class PlayerHealth : MonoBehaviour
     CameraShake _shake;
 
     public float Health { get; private set; }
-    public bool isDead { get; private set; }
+    public bool IsDead { get; private set; }
     float _minDistanceToBlackhole = 1.1f;
 
     public event Action OnHealthChange;
@@ -36,9 +35,9 @@ public class PlayerHealth : MonoBehaviour
 
     void Death()
     {
-        if (isDead)
+        if (IsDead)
             return;
-        isDead = true;
+        IsDead = true;
         StartCoroutine(DeathDelay());
         Instantiate(_deathParticles, transform.position, Quaternion.identity);
         _spriteRenderer.enabled = false;

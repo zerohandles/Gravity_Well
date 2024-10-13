@@ -1,14 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class CameraShake : MonoBehaviour
 {
     [SerializeField] float _shakeTime;
     [SerializeField] float _shakeRadius;
 
-    bool isShaking;
+    public bool isShaking;
     Vector3 _shakeOffset;
 
     void Update()

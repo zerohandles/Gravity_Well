@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -61,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (_playerHealth.isDead)
+        if (_playerHealth.IsDead)
             return;
 
         _cooldownTimer += Time.deltaTime;
@@ -97,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (_playerHealth.isDead)
+        if (_playerHealth.IsDead)
             return;
 
         _direction = (transform.position - _blackhole.position).normalized;

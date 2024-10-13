@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -10,18 +8,10 @@ public class GameMenu : MonoBehaviour
     [SerializeField] GameObject _pauseMenu;
     [SerializeField] AudioClip _pauseSound;
 
-    PlayerInput _playerInput;
-    InputAction _pauseAction;
-
-    private void Awake()
-    {
-        _playerInput = GetComponent<PlayerInput>();
-        _pauseAction = _playerInput.actions.FindAction("Pause");
-    }
 
     private void Update()
     {
-        if (_pauseAction != null && _pauseAction.WasPerformedThisFrame())
+        if (Input.GetKeyDown(KeyCode.Escape))
             Pause();
     }
 

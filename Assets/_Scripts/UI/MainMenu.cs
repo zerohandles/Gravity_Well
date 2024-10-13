@@ -1,22 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] SceneField _mainGameScene;
     [SerializeField] GameObject _tutorialMenu;
     [SerializeField] Scrollbar _tutorialScroll;
     [SerializeField] GameObject _creditsMenu;
     [SerializeField] Scrollbar _creditsScroll;
     [SerializeField] AudioClip _buttonSound;
+    [SerializeField] OpeningCinamatics _openingCinamatics;
 
     public void StartGame()
     {
         AudioManager.Instance.PlayOneShot(_buttonSound);
-        SceneManager.LoadScene(_mainGameScene);
+        _openingCinamatics.StartCinematic();
     }
 
     public void ToggleTutorial()
