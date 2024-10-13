@@ -605,6 +605,7 @@ MonoBehaviour:
   _tutorialScroll: {fileID: 534622772}
   _creditsMenu: {fileID: 1167348431}
   _creditsScroll: {fileID: 2079020729}
+  _buttonSound: {fileID: 8300000, guid: 1d36ec7c56c0e40478eba9721442bb6f, type: 3}
 --- !u!1 &236900009
 GameObject:
   m_ObjectHideFlags: 0
@@ -817,7 +818,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -88}
+  m_AnchoredPosition: {x: 0, y: -71}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &301100063
@@ -830,6 +831,7 @@ GameObject:
   m_Component:
   - component: {fileID: 301100065}
   - component: {fileID: 301100064}
+  - component: {fileID: 301100066}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -948,6 +950,18 @@ Transform:
   m_Father: {fileID: 344766222}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &301100066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301100063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1655d8cf3c964b8438fbb825a1d49731, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &315915840
 GameObject:
   m_ObjectHideFlags: 0
@@ -1835,7 +1849,15 @@ MonoBehaviour:
     Created
     by Jan125
 
-    https://opengameart.org/users/jan125'
+    https://opengameart.org/users/jan125
+
+
+    SFX:
+
+    All sound
+    effects provided by:
+
+    kenny - www.kenny.nl'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 61fbd10ece45bda46add19360545f74a, type: 2}
   m_sharedMaterial: {fileID: 3976947958900156667, guid: 61fbd10ece45bda46add19360545f74a, type: 2}
@@ -2218,8 +2240,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1129827956}
   m_HandleRect: {fileID: 1129827955}
   m_Direction: 2
-  m_Value: 1.0000001
-  m_Size: 0.576321
+  m_Value: 0.99999994
+  m_Size: 0.52630514
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2856,7 +2878,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 174}
+  m_AnchoredPosition: {x: 0, y: 211}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &774870864
@@ -3606,8 +3628,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -149.04506}
-  m_SizeDelta: {x: 611.93, y: 815.83}
+  m_AnchoredPosition: {x: 0, y: -187.81}
+  m_SizeDelta: {x: 611.93, y: 893.36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1075049477
 GameObject:
@@ -3910,7 +3932,7 @@ RectTransform:
   m_Father: {fileID: 1161647320}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.423679}
+  m_AnchorMin: {x: 0, y: 0.47369483}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -4143,8 +4165,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -149.04503}
-  m_SizeDelta: {x: 611.93, y: 815.83}
+  m_AnchoredPosition: {x: 0, y: -137.62}
+  m_SizeDelta: {x: 611.93, y: 875.16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1253506758
 GameObject:
@@ -4205,10 +4227,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Your goal is to escape the blackhole's gravitational pull before you are
-    sucked in and reach a safety zone.  \n\n<b>Movement:</b>  <b>WASD</b> or the
-    <b>Arrow Keys</b>\n\nNote: moving left and right diverts power from the main
-    engine and you will have less forward thrust.\n\n<b>Boosting:</b> Hold <b>SHIFT</b>
-    to boost\n"
+    sucked in and reach a safety zone.  \n\n<b>Options/Pause:</b> Press <b>Escape</b>
+    during gameplay\n<b>Movement:</b>  <b>WASD</b> or the <b>Arrow Keys</b>\n<b>Boosting:</b>
+    Hold <b>SHIFT</b> to boost\n\nNote: moving left and right diverts power from
+    the main engine and you will have less forward thrust.\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8759d790ca9d1594a80b959d4e61ee97, type: 2}
   m_sharedMaterial: {fileID: -1946661252935810965, guid: 8759d790ca9d1594a80b959d4e61ee97, type: 2}
@@ -4739,8 +4761,8 @@ RectTransform:
   m_Father: {fileID: 688167422}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.42367905}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0.4157983}
+  m_AnchorMax: {x: 1, y: 0.9530486}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5921,8 +5943,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1644314667}
   m_HandleRect: {fileID: 1644314666}
   m_Direction: 2
-  m_Value: 1.0000001
-  m_Size: 0.576321
+  m_Value: 0.89853823
+  m_Size: 0.5372503
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6000,7 +6022,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -250}
+  m_AnchoredPosition: {x: 0, y: -249}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &3188610263593681232
