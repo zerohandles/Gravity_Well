@@ -12,6 +12,8 @@ public class Comet : MonoBehaviour
     [SerializeField] float _maxScale;
     [SerializeField] GameObject _fuelPrefab;
     [SerializeField] List<Sprite> _sprites;
+    [SerializeField] AudioClip _destroySFX;
+    [SerializeField] ParticleSystem _destroyParticles;
 
     float _health;
     float _mass;
@@ -70,12 +72,13 @@ public class Comet : MonoBehaviour
             Instantiate(_fuelPrefab, transform.position + offset, Quaternion.identity);
         }
         GameManager.Instance.CometKilled();
+        AudioManager.Instance.PlayOneShot(_destroySFX);
         Death();
     }
 
     private void Death()
     {
-        // Spawn Particles
+        Instantiate(_destroyParticles, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 

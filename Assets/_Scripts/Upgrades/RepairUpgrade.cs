@@ -3,6 +3,7 @@ using UnityEngine;
 public class RepairUpgrade : PowerUp
 {
     [SerializeField] float _repairVaue;
+    [SerializeField] ParticleSystem _pickUpEffect;
 
     public override void UsePowerUp(GameObject gameObject)
     {
@@ -10,7 +11,7 @@ public class RepairUpgrade : PowerUp
         if (player != null)
         {
             player.GainHealth(_repairVaue);
-            // play particle effect
+            Instantiate(_pickUpEffect, player.transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
     }

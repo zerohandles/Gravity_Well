@@ -115,6 +115,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ad11b050a768cbc43a1686f255b02056, type: 3}
   - {fileID: 21300000, guid: 2f1f08fae49e8dc4eb6b1c82e56a2f59, type: 3}
   - {fileID: 21300000, guid: 087c4e6fc13ef904fb2ccf5925fca2fb, type: 3}
+  _destroySFX: {fileID: 8300000, guid: ac17320c31285c14fad0ed91bd241782, type: 3}
+  _destroyParticles: {fileID: 3441472131428226903, guid: d7fba0d4fea957f4180533523855c04e, type: 3}
 --- !u!50 &6565033192462662954
 Rigidbody2D:
   serializedVersion: 4

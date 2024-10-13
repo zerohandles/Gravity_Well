@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 5
   _lifeTime: 5
+  _impactSFX: {fileID: 8300000, guid: eeb7d935a7d0ece4a86ec23e88d20070, type: 3}
 --- !u!70 &8896188113478859998
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

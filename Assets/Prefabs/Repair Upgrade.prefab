@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9102611386889097477}
   m_Layer: 0
   m_Name: Repair Upgrade
-  m_TagString: Untagged
+  m_TagString: Upgrade
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162,3 +162,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _repairVaue: 5
+  _pickUpEffect: {fileID: 1474117152210475272, guid: 6fdaf1e9c97f47a44a69b0cc35f07975, type: 3}

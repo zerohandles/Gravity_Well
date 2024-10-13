@@ -10,6 +10,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] SpaceShip _shipPrefab;
 
     List<Transform> _spawners = new List<Transform>();
+    PlayerHealth _player;
     float _spawnTimer;
     bool isSpawning;
 

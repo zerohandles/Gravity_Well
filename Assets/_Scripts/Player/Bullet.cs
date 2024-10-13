@@ -4,6 +4,7 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] float _speed;
     [SerializeField] float _lifeTime;
+    [SerializeField] AudioClip _impactSFX;
 
     void Start() => Invoke(nameof(DestroyBullet), _lifeTime);
 
@@ -16,6 +17,7 @@ public class Bullet : MonoBehaviour
         if (collision.CompareTag("Debris"))
         {
             //Instantiate explosion effect
+            AudioManager.Instance.PlayOneShot(_impactSFX);
             Destroy(gameObject);
         }
     }

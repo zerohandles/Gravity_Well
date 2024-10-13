@@ -8,6 +8,7 @@ TagManager:
   - Debris
   - Blackhole
   - Goal
+  - Upgrade
   layers:
   - Default
   - TransparentFX

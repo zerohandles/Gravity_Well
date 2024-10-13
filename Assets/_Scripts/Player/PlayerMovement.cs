@@ -17,15 +17,21 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float _maxFuel;
     [SerializeField] float _boostMultiplier;
     [SerializeField] GameObject _booster;
+    [SerializeField] AudioClip _thrusterSFX;
+    [SerializeField] AudioClip _boostSFX;
+    [SerializeField] AudioClip _upgradeSFX;
 
     [Header("Shooting")]
     [SerializeField] GameObject _firePoint;
     [SerializeField] GameObject _bulletPrefab;
     [SerializeField] float _weaponCooldown;
+    [SerializeField] AudioClip _bulletSFX;
 
 
     PlayerInput _input;
     Rigidbody2D _rb;
+    AudioSource _audioSource;
+    PlayerHealth _playerHealth;
     bool _isMoving;
     bool _isBoosting;
     bool _isOnCooldown;
@@ -37,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
     InputAction _moveAction;
     InputAction _fireAction;
     InputAction _boostAction;
+
     public float Fuel { get; private set; }
     public event Action OnFuelChange;
 
@@ -44,6 +51,8 @@ public class PlayerMovement : MonoBehaviour
     {
         _input = GetComponent<PlayerInput>();
         _rb = GetComponent<Rigidbody2D>();
+        _audioSource = GetComponent<AudioSource>();
+        _playerHealth = GetComponent<PlayerHealth>();
         _moveAction = _input.actions.FindAction("Move");
         _fireAction = _input.actions.FindAction("Fire");
         _boostAction = _input.actions.FindAction("Boost");
@@ -52,6 +61,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (_playerHealth.isDead)
+            return;
+
         _cooldownTimer += Time.deltaTime;
         _isOnCooldown = _cooldownTimer <= _weaponCooldown;
 
@@ -85,6 +97,9 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (_playerHealth.isDead)
+            return;
+
         _direction = (transform.position - _blackhole.position).normalized;
         _rb.AddForce(_direction * (_escapeSpeed - _pullStrength));
     }
@@ -103,16 +118,32 @@ public class PlayerMovement : MonoBehaviour
                 transform.RotateAround(_blackhole.position, Vector3.forward, -_moveInput.x * _rotationSpeed * Time.deltaTime);
             }
             if (_isBoosting)
+            {
                 _escapeSpeed *= _boostMultiplier;
+                _audioSource.clip = _boostSFX;
+                if (!_audioSource.isPlaying)
+                    _audioSource.Play();
+            }
+            else
+            {
+                _audioSource.clip = _thrusterSFX;
+                if (!_audioSource.isPlaying)
+                    _audioSource.Play();
+            }
         }
         else
+        {
             _escapeSpeed = 0;
+            _audioSource.Stop();
+        }
+
     }
 
     void HandleFiring()
     {
         _cooldownTimer = 0;
         Instantiate(_bulletPrefab, _firePoint.transform.position, transform.rotation);
+        AudioManager.Instance.PlayOneShot(_bulletSFX);
     }
 
     public void UpgradeEngine() => _thrusterSpeed *= 1.025f;
@@ -122,5 +153,11 @@ public class PlayerMovement : MonoBehaviour
         Fuel += amount;
         Fuel = Mathf.Clamp(Fuel, 0, 100);
         OnFuelChange?.Invoke();
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Upgrade"))
+            AudioManager.Instance.PlayOneShot(_upgradeSFX);
     }
 }

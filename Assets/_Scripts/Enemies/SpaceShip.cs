@@ -10,6 +10,8 @@ public class SpaceShip : MonoBehaviour
     [SerializeField] float _maxScale;
     [SerializeField] GameObject[] _upgradePrefabs;
     [SerializeField] List<Sprite> _sprites;
+    [SerializeField] AudioClip _destroySFX;
+    [SerializeField] ParticleSystem _destroyParticles;
 
     GameObject _blackhole;
     SpriteRenderer _spriteRenderer;
@@ -66,6 +68,7 @@ public class SpaceShip : MonoBehaviour
             Instantiate(loot, transform.position + offset, Quaternion.identity);
         }
         GameManager.Instance.ShipKilled();
+        AudioManager.Instance.PlayOneShot(_destroySFX);
         Death();
     }
 
@@ -78,7 +81,7 @@ public class SpaceShip : MonoBehaviour
 
     void Death()
     {
-        // Particle effects
+        Instantiate(_destroyParticles, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
