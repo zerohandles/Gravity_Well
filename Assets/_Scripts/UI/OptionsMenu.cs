@@ -24,4 +24,11 @@ public class OptionsMenu : MonoBehaviour
         _playerAudio.mute = isMuted;
         _gameAudio.mute = isMuted;
     }
+
+    public void ToggleAutoMovement(bool enabled)
+    {
+        var player = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        if (player != null )
+            player.ToggleAutoMove(enabled);
+    }
 }

@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     bool _isMoving;
     bool _isBoosting;
     bool _isOnCooldown;
+    bool _isAutoEnabled;
     Vector2 _direction;
     Vector2 _moveInput;
     float _escapeSpeed;
@@ -67,6 +68,10 @@ public class PlayerMovement : MonoBehaviour
 
         _moveInput = _moveAction.ReadValue<Vector2>();
         _isMoving = _moveInput != Vector2.zero;
+
+        if (_isAutoEnabled)
+            _isMoving = true;
+
         _isBoosting = _boostAction.ReadValue<float>() > 0 && Fuel > 0;
 
         if (_isOnCooldown)
@@ -106,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_isMoving)
         {
-            if (_moveInput.y > 0)
+            if (_moveInput.y > 0 || _isAutoEnabled)
                 _escapeSpeed = _thrusterSpeed;
             if (_moveInput.y < 0)
                 _escapeSpeed = -_thrusterSpeed;
@@ -152,6 +157,8 @@ public class PlayerMovement : MonoBehaviour
         Fuel = Mathf.Clamp(Fuel, 0, 100);
         OnFuelChange?.Invoke();
     }
+
+    public void ToggleAutoMove(bool enabled) => _isAutoEnabled = enabled;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
