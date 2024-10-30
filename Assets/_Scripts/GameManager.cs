@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] List<Goal> _goals = new List<Goal>();
+
+    [Header("UI Element")]
     [SerializeField] GameObject _victoryMenu;
     [SerializeField] GameObject _defeatMenu;
     [SerializeField] TextMeshProUGUI _cometText;
@@ -44,11 +46,9 @@ public class GameManager : MonoBehaviour
         _player.TriggerDeath -= GameOver;
     }
 
-    void Start()
-    {
-        _startTime = Time.time;    
-    }
+    void Start() => _startTime = Time.time;
 
+    // Display victory screen when player wins the game
     private void Victory()
     {
         Time.timeScale = 0;
@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
         float timeMultiplier = _targetTime - elapsedTime;
         int timeScore = (int)timeMultiplier * 100;
 
+        // Set victory screen text and score
         _cometText.text = $"Comets Destroyed: {_cometKills}";
         _shipText.text = $"Ships Destroyed: {_shipKills}";
         _timeText.text = $"Time Bonus: {timeScore}";
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour
         _victoryMenu.SetActive(true);
     }
 
+    // Display game over screen when the player loses
     private void GameOver()
     {
         Time.timeScale = 0;

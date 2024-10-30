@@ -3,12 +3,17 @@ using UnityEngine;
 
 public class SpaceShip : MonoBehaviour
 {
+    [Header("Ship Stats")]
     [SerializeField] float _minMass;
     [SerializeField] float _maxMass;
     [SerializeField] float _minScale;
     [SerializeField] float _maxScale;
-    [SerializeField] GameObject[] _upgradePrefabs;
     [SerializeField] List<Sprite> _sprites;
+
+    [Header("Loot")]
+    [SerializeField] GameObject[] _upgradePrefabs;
+
+    [Header("Death Effects")]
     [SerializeField] AudioClip _destroySFX;
     [SerializeField] ParticleSystem _destroyParticles;
 
@@ -28,6 +33,7 @@ public class SpaceShip : MonoBehaviour
         _mass = Random.Range(_minMass, _maxMass);
         _health = Mathf.Ceil(2 * _scale);
 
+        // Randomize ships scale and mass
         var localScale = transform.localScale;
         localScale.x *= _scale;
         localScale.y *= _scale;
@@ -40,10 +46,12 @@ public class SpaceShip : MonoBehaviour
     {
         transform.up = transform. position - _blackhole.transform.position;
 
+        // Destroy ship when it reaches the center of the blackhole
         if (Vector2.Distance(transform.position, Vector2.zero) < 0.1f)
             Destroy(gameObject);
     }
 
+    // Reduce ship's health
     private void TakeDamage()
     {
         _health--;
@@ -52,14 +60,17 @@ public class SpaceShip : MonoBehaviour
             SpawnLoot();
     }
 
+    // Spawn loot if destroyed by the player
     private void SpawnLoot()
     {
         bool isBig = _scale >= 1.3f;
         var loot = GenerateLoot();
         Vector3 offset = new Vector3(Random.Range(0, 0.5f), Random.Range(0, 0.5f), 0);
 
+        // Spawn loot with an offset to avoid loot stacking up
         Instantiate(loot, transform.position + offset, Quaternion.identity);
 
+        // Increase amount of loot based on the size/health of the ship
         if (isBig)
         {
             loot = GenerateLoot();
@@ -71,6 +82,7 @@ public class SpaceShip : MonoBehaviour
         Death();
     }
 
+    // Return a random loot prefab
     GameObject GenerateLoot()
     {
         int rand = Random.Range(0, _upgradePrefabs.Length);
@@ -78,6 +90,7 @@ public class SpaceShip : MonoBehaviour
         return _upgradePrefabs[rand];
     }
 
+    // Spawn death effects and destroy the game object
     void Death()
     {
         Instantiate(_destroyParticles, transform.position, Quaternion.identity);
@@ -89,6 +102,7 @@ public class SpaceShip : MonoBehaviour
         if (collision.CompareTag("Bullet"))
             TakeDamage();
 
+        // If ship collides with the player, down't spawn loot and damage the player
         if (collision.CompareTag("Player"))
         {
             var player = collision.transform.GetComponent<PlayerHealth>();

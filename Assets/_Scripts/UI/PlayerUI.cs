@@ -44,16 +44,13 @@ public class PlayerUI : MonoBehaviour
         _time += Time.deltaTime;
         TimeSpan timeSpan = TimeSpan.FromSeconds(_time);
 
+        // Display and format the game timer
         _timerText.text = string.Format("{0:D1}:{1:D2}:{2:D2}", timeSpan.Minutes, timeSpan.Seconds, timeSpan.Milliseconds / 10);
     }
 
-    void UpdateHealth()
-    {
-        _healthBar.value = _player.Health;
-    }
+    // Update the health display with the player's health
+    void UpdateHealth() => _healthBar.value = _player.Health;
 
-    private void UpdateFuel()
-    {
-        _fuelBar.value = _playerFuel.Fuel;
-    }
+    // Update the fuel display witht he player's fuel
+    void UpdateFuel() => _fuelBar.value = _playerFuel.Fuel;
 }

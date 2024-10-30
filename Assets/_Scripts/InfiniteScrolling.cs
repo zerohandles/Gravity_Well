@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Infinitely loop the main menu background on the horizontal axis
 public class InfiniteScrolling : MonoBehaviour
 {
     [SerializeField] float _scrollSpeed;

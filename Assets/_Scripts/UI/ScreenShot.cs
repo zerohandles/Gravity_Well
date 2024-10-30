@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Not included in build, used to take screen shots for itch.io submission page
 public class ScreenShot : MonoBehaviour
 {
     void Update()

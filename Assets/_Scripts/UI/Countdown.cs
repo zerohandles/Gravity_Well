@@ -7,11 +7,9 @@ public class Countdown : MonoBehaviour
     [SerializeField] TextMeshProUGUI _countdownText; 
     float _countdownTime = 3.0f;
 
-    void Start()
-    {
-        StartCoroutine(StartCountdown());
-    }
+    void Start() => StartCoroutine(StartCountdown());
 
+    // Pause time and display a countdown timer before resuming the game
     IEnumerator StartCountdown()
     {
         Time.timeScale = 0;
@@ -23,7 +21,7 @@ public class Countdown : MonoBehaviour
             _countdownTime -= 1.0f;
         }
 
-        // Wait an extra second
+        // Wait an extra second to display 0
         _countdownText.text = "0";
         yield return new WaitForSecondsRealtime(1.0f); 
 

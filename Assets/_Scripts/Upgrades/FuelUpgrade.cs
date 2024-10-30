@@ -5,6 +5,7 @@ public class FuelUpgrade : PowerUp
     [SerializeField] float _fuelAmount;
     [SerializeField] ParticleSystem _pickUpEffect;
 
+    // Display particle effect on pickup and add fuel to the player's boosters
     public override void UsePowerUp(GameObject gameObject)
     {
         if (gameObject.TryGetComponent<PlayerMovement>(out var player))

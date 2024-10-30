@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameMenu : MonoBehaviour
@@ -9,24 +8,27 @@ public class GameMenu : MonoBehaviour
     [SerializeField] AudioClip _pauseSound;
 
 
-    private void Update()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
             Pause();
     }
 
+    // Reload the gameplay scene
     public void Retry()
     {
         Time.timeScale = 1.0f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    // Load the main menu scene
     public void Menu()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(_mainMenuScene);
     }
 
+    // Toggle the pause screen and timescale
     public void Pause()
     {
         AudioManager.Instance.PlayOneShot(_pauseSound);

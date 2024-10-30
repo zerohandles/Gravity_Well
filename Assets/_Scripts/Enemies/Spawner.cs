@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    [Header("Spawn Stats")]
     [SerializeField] float _maxSpawns;
     [SerializeField] float _spawnDelay;
+
+    [Header("Prefabs")]
     [SerializeField] Comet _cometPrefab;
     [SerializeField] SpaceShip _shipPrefab;
 
@@ -18,15 +21,10 @@ public class Spawner : MonoBehaviour
     {
         var spawners = GetComponentsInChildren<Transform>();
         foreach (var spawner in spawners)
-        {
             _spawners.Add(spawner);
-        }
     }
 
-    void Start()
-    {
-        InvokeRepeating(nameof(IncreaseSpawnRate), 60, 60);
-    }
+    void Start() => InvokeRepeating(nameof(IncreaseSpawnRate), 60, 60);
 
     void Update()
     {
@@ -39,11 +37,13 @@ public class Spawner : MonoBehaviour
     {
         isSpawning = true;
 
+        // Spawn up the spawn limit 
         for (int i = 0; i < _maxSpawns; i++)
         {
             Transform spawner = _spawners[Random.Range(0, _spawners.Count)];
             float probability = Random.value;
 
+            // 10% chance to spawn a ship, otherwise spawn a comet
             if (probability <= .1f)
                 Instantiate(_shipPrefab, spawner.position, Quaternion.identity);
             else
@@ -55,8 +55,5 @@ public class Spawner : MonoBehaviour
         _spawnTimer = 0;
     }
 
-    void IncreaseSpawnRate()
-    {
-        _maxSpawns++;
-    }
+    void IncreaseSpawnRate() => _maxSpawns++;
 }

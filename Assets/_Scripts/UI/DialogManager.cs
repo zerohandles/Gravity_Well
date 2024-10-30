@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class DialogManager : MonoBehaviour
 {
+    [Header("Dialog Display")]
     [SerializeField] GameObject _dialogPanel;
     [SerializeField] TextMeshProUGUI _dialogText;
     [SerializeField] TextMeshProUGUI _speakerText;
@@ -32,10 +33,7 @@ public class DialogManager : MonoBehaviour
             Instance = this;
     }
 
-    void Start()
-    {
-        _dialogPanel.SetActive(false);
-    }
+    void Start() => _dialogPanel.SetActive(false);
 
     void Update()
     {
@@ -43,11 +41,10 @@ public class DialogManager : MonoBehaviour
             return;
 
         if (Input.anyKeyDown && canContinueToNextLine)
-        {
             ContinueStory();
-        }
     }
 
+    // Load the first line of the Story and display the dialog window
     public void EnterDialongMode(TextAsset inkJSON)
     {
         _currentStory = new Story(inkJSON.text);
@@ -57,6 +54,7 @@ public class DialogManager : MonoBehaviour
         ContinueStory();
     }
 
+    // Reset the dialog window after dialog is finished
     IEnumerator ExitDialogMode()
     {
         yield return new WaitForSeconds(0.2f);
@@ -65,6 +63,7 @@ public class DialogManager : MonoBehaviour
         _dialogText.text = "";
     }
 
+    // Load the next line of dialog from the Story if the story isn't completed
     void ContinueStory()
     {
         if (_currentStory.canContinue)
@@ -79,6 +78,7 @@ public class DialogManager : MonoBehaviour
             StartCoroutine(ExitDialogMode());
     }
 
+    // Display the current line form the Story 1 letter at a time
     IEnumerator DisplayLine(string line)
     {
         _dialogText.text = line;
@@ -90,12 +90,15 @@ public class DialogManager : MonoBehaviour
         foreach (char letter in line.ToCharArray())
         {
             counter++;
+
+            // Display entire line all at once if player presses a button to skip
             if (Input.anyKeyDown && counter > 5)
             {
                 _dialogText.maxVisibleCharacters = line.Length;
                 break;
             }
 
+            // Display the next letter of the dialog line
             _dialogText.maxVisibleCharacters++;
             yield return new WaitForSeconds(_typingSpeed);
         }
@@ -104,8 +107,10 @@ public class DialogManager : MonoBehaviour
         canContinueToNextLine = true;
     }
 
+    // Read the tags written in the Story to set the speaker's name and trigger events in the dialog window
     void HandleTags(List<string> currentTags)
     {
+        // Parse each tag included in the Story line
         foreach (string tag in currentTags)
         {
             string[] splitTag = tag.Split(':');
@@ -115,6 +120,7 @@ public class DialogManager : MonoBehaviour
             string tagKey = splitTag[0].Trim();
             string tagValue = splitTag[1].Trim();
 
+            // Process each tag
             switch (tagKey)
             {
                 case SPEAKER_TAG:

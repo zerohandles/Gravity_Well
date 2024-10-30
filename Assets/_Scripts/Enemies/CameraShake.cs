@@ -11,6 +11,7 @@ public class CameraShake : MonoBehaviour
 
     void Update()
     {
+        // Turn off shaking when game is paused
         if (Time.timeScale == 0)
             isShaking = false;
 
@@ -29,6 +30,7 @@ public class CameraShake : MonoBehaviour
             StartCoroutine(Shake());
     }
 
+    // Shake the camera for an amount of time
     IEnumerator Shake()
     {
         isShaking = true;

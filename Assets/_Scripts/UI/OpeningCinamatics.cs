@@ -8,24 +8,28 @@ public class OpeningCinamatics : MonoBehaviour
 {
     [SerializeField] TextAsset _openingScript;
     [SerializeField] GameObject _uiContainer;
+
+    [Header("Camera")]
     [SerializeField] CameraShake _cameraShake;
     [SerializeField] AudioClip _rumbleAudio;
+
+    [Header("Scene to Load")]
     [SerializeField] SceneField _mainGameScene;
     bool _cinematicStarted = false;
 
-    private void OnEnable() => DialogManager.Instance.RumbleEvent += StartRumble;
+    void OnEnable() => DialogManager.Instance.RumbleEvent += StartRumble;
 
-    private void OnDisable() => DialogManager.Instance.RumbleEvent -= StartRumble;
+    void OnDisable() => DialogManager.Instance.RumbleEvent -= StartRumble;
 
     void Update()
     {
+        // Load the gameplay scene after the opening cutscene finishes
         if (_cinematicStarted && !DialogManager.Instance.DialogIsPlaying)
-        {
             SceneManager.LoadScene(_mainGameScene);
-        }
     }
 
-    private void StartRumble()
+    // Start camera shake effect
+    void StartRumble()
     {
         AudioManager.Instance.PlayOneShot(_rumbleAudio);
         _cameraShake.isShaking = true;
@@ -37,6 +41,7 @@ public class OpeningCinamatics : MonoBehaviour
         StartCoroutine(CinematicBuffer());
     }
 
+    // Buffer created to prevent cutscene being skipped before playing
     IEnumerator CinematicBuffer()
     {
         yield return new WaitForSeconds(2);

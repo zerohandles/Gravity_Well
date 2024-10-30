@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
+// Create a serialized scene field for easier scene loading
 [System.Serializable]
 public class SceneField
 {

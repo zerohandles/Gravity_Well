@@ -9,6 +9,7 @@ public class StarScroll : MonoBehaviour
 
     void Update()
     {
+        // Move the star field background in the opposite direction the player is moving
         _direction = (_blackHole.position - _player.position).normalized;
         transform.Translate(_scrollSpeed * Time.deltaTime * _direction);
     }

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Parent class for all in game power ups
 [RequireComponent (typeof(Rigidbody2D))]
 public class PowerUp : MonoBehaviour
 {

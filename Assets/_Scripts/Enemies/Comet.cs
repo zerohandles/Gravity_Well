@@ -3,14 +3,19 @@ using UnityEngine;
 
 public class Comet : MonoBehaviour
 {
+    [Header("Comet Stats")]
     [SerializeField] float _minMass;
     [SerializeField] float _maxMass;
     [SerializeField] float _minRotationSpeed;
     [SerializeField] float _maxRotationSpeed;
     [SerializeField] float _minScale;
     [SerializeField] float _maxScale;
-    [SerializeField] GameObject _fuelPrefab;
     [SerializeField] List<Sprite> _sprites;
+
+    [Header("Loot")]
+    [SerializeField] GameObject _fuelPrefab;
+
+    [Header("Deestruction Effects")]
     [SerializeField] AudioClip _destroySFX;
     [SerializeField] ParticleSystem _destroyParticles;
 
@@ -30,6 +35,7 @@ public class Comet : MonoBehaviour
         _scale = Random.Range(_minScale, _maxScale);
         _mass = Random.Range(_minMass, _maxMass);
 
+        // Randomize comet's scale, mass and rotation
         var localScale = transform.localScale;
         localScale.x *= _scale;
         localScale.y *= _scale;
@@ -44,10 +50,12 @@ public class Comet : MonoBehaviour
     {
         RotateComet();
 
+        // Destroy the comet when it reached the center of the blackhole
         if (Vector2.Distance(transform.position, Vector2.zero) < 0.1f)
             Destroy(gameObject);
     }
 
+    // Reduce the comet's health
     private void TakeDamage()
     {
         _health--;
@@ -56,6 +64,7 @@ public class Comet : MonoBehaviour
             SpawnLoot();
     }
 
+    // Spawn loot if the comet was destroyed by the player
     private void SpawnLoot()
     {
         float amount = _scale switch
@@ -65,6 +74,7 @@ public class Comet : MonoBehaviour
             _ => 1
         };
 
+        // Spawn loot with a random offset to avoid loot stacking up
         for (int  i = 0; i < amount; i++)
         {
             Vector3 offset = new Vector3(Random.Range(0,.5f), Random.Range(0,.5f), 0);
@@ -75,6 +85,7 @@ public class Comet : MonoBehaviour
         Death();
     }
 
+    // Spawmn death effect and destroy the game object
     private void Death()
     {
         Instantiate(_destroyParticles, transform.position, Quaternion.identity);
@@ -85,6 +96,7 @@ public class Comet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // If comet collides with the player don't spawn loot and destroy game object
         if (collision.CompareTag("Player"))
         {
             if (collision.TryGetComponent<PlayerHealth>(out var _player))
